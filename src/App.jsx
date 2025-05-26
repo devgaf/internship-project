@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FetchData } from './services/fetch-data'
 import './App.css'
+import { IclTable } from './components/iclTable.jsx'
 
 const fetchData = new FetchData();
 
@@ -22,26 +23,9 @@ function App() {
           {error.message || 'Error al obtener los datos de ICL'}
         </div>
       )}
-      <table className="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            iclData && iclData?.results.map((element) => (
-              <tr key={element.fecha+element.valor}>
-                <td>{element.fecha}</td>
-                <td>{element.valor}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <IclTable iclData={iclData} />
     </>
   )
 }
 
-export default App
+export default App;
